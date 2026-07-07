@@ -12,20 +12,56 @@ import { Mail, MessageCircle, MapPin, Clock } from "lucide-react";
 
 export default function Home() {
   const services = [
+    // الخدمات الجديدة (الأربع الأولى)
+    {
+      title: "توثيق واتساب",
+      description: "توثيق أرقام وقنوات الواتساب بالعلامة الزرقاء",
+      icon: "💬",
+      color: "from-blue-600 to-blue-700",
+      buttonColor: "bg-yellow-500 hover:bg-yellow-600",
+    },
+    {
+      title: "توثيق فيسبوك",
+      description: "توثيق صفحات وحسابات فيسبوك بالعلامة الزرقاء",
+      icon: "f",
+      color: "from-orange-500 to-red-600",
+      buttonColor: "bg-yellow-500 hover:bg-yellow-600",
+    },
+    {
+      title: "توثيق إنستجرام",
+      description: "توثيق حسابات إنستجرام بالعلامة الزرقاء",
+      icon: "📷",
+      color: "from-pink-500 to-rose-600",
+      buttonColor: "bg-yellow-500 hover:bg-yellow-600",
+    },
+    {
+      title: "توثيق Meta Business",
+      description: "توثيق حافظة أعمال Meta للإدارة الاحترافية",
+      icon: "M",
+      color: "from-green-500 to-emerald-600",
+      buttonColor: "bg-yellow-500 hover:bg-yellow-600",
+    },
+    // الخدمات الأصلية
     {
       title: "خدمات التوثيق التجاري",
       description: "التوثيق التجاري والهوية الرقمية المتقدمة",
       icon: "🔐",
+      color: "from-indigo-600 to-indigo-700",
+      buttonColor: "bg-yellow-500 hover:bg-yellow-600",
     },
     {
       title: "حلول الدفع الإلكتروني",
       description: "حلول الدفع الإلكتروني والاشتراكات العالمية",
       icon: "💳",
+      color: "from-cyan-600 to-cyan-700",
+      buttonColor: "bg-yellow-500 hover:bg-yellow-600",
     },
     {
       title: "إدارة الأعمال الرقمية",
       description: "خدمات السوشيال ميديا وإدارة الأعمال الرقمية",
       icon: "📱",
+      color: "from-purple-600 to-purple-700",
+      buttonColor: "bg-yellow-500 hover:bg-yellow-600",
     },
   ];
 
@@ -112,31 +148,41 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-white">
+      <section id="services" className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               الخدمات المقدمة
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              نقدم حلولاً رقمية متكاملة لتطوير أعمالك وتحسين عملياتك التجارية
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              نقدم حلولاً رقمية متكاملة وشاملة تغطي التوثيق والدفع الإلكتروني وإدارة الأعمال الرقمية بأعلى معايير الاحترافية
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
-              <Card
+              <div
                 key={index}
-                className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 bg-gradient-to-br from-white to-blue-50"
+                className={`bg-gradient-to-br ${service.color} rounded-xl p-6 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group`}
               >
-                <div className="text-5xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold text-foreground mb-3">
+                <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">
+                  {service.icon}
+                </div>
+                <h3 className="text-lg font-bold mb-2">
                   {service.title}
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-sm text-white/90 mb-4">
                   {service.description}
                 </p>
-              </Card>
+                <div className="flex gap-2">
+                  <button className={`${service.buttonColor} text-black font-semibold px-3 py-1 rounded text-sm transition-all`}>
+                    اطلب الآن
+                  </button>
+                  <button className="bg-gray-900 text-white font-semibold px-3 py-1 rounded text-sm hover:bg-gray-800 transition-all">
+                    تفاصيل
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
         </div>
