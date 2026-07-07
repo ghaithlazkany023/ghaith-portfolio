@@ -3,6 +3,7 @@ import { MessageCircle, X } from "lucide-react";
 
 export default function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const [badgeCount] = useState(1); // عدد الإشعارات
 
   const whatsappNumber = "905359160127";
   const defaultMessage = "مرحباً! كيف يمكنني مساعدتك؟";
@@ -98,6 +99,13 @@ export default function WhatsAppWidget() {
 
           {/* Pulse Animation */}
           <span className="absolute inset-0 bg-green-500 rounded-full animate-pulse opacity-75"></span>
+
+          {/* Badge */}
+          {badgeCount > 0 && (
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center shadow-lg animate-pulse">
+              {badgeCount}
+            </span>
+          )}
 
           {/* Tooltip */}
           <span className="absolute bottom-full right-0 mb-2 bg-gray-900 text-white text-xs py-1 px-2 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
