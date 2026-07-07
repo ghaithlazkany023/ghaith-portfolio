@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Mail, MessageCircle, MapPin, Clock } from "lucide-react";
+import { Mail, MessageCircle, MapPin, Clock, MessageSquare, Facebook, Instagram, Settings, Lock, CreditCard, Smartphone, ArrowRight } from "lucide-react";
 
 /**
  * Design Philosophy: Modern Professional Minimalist
@@ -16,52 +15,45 @@ export default function Home() {
     {
       title: "توثيق واتساب",
       description: "توثيق أرقام وقنوات الواتساب بالعلامة الزرقاء",
-      icon: "💬",
+      Icon: MessageSquare,
       color: "from-blue-600 to-blue-700",
-      buttonColor: "bg-yellow-500 hover:bg-yellow-600",
     },
     {
       title: "توثيق فيسبوك",
       description: "توثيق صفحات وحسابات فيسبوك بالعلامة الزرقاء",
-      icon: "f",
+      Icon: Facebook,
       color: "from-orange-500 to-red-600",
-      buttonColor: "bg-yellow-500 hover:bg-yellow-600",
     },
     {
       title: "توثيق إنستجرام",
       description: "توثيق حسابات إنستجرام بالعلامة الزرقاء",
-      icon: "📷",
+      Icon: Instagram,
       color: "from-pink-500 to-rose-600",
-      buttonColor: "bg-yellow-500 hover:bg-yellow-600",
     },
     {
       title: "توثيق Meta Business",
       description: "توثيق حافظة أعمال Meta للإدارة الاحترافية",
-      icon: "M",
+      Icon: Settings,
       color: "from-green-500 to-emerald-600",
-      buttonColor: "bg-yellow-500 hover:bg-yellow-600",
     },
     // الخدمات الأصلية
     {
       title: "خدمات التوثيق التجاري",
       description: "التوثيق التجاري والهوية الرقمية المتقدمة",
-      icon: "🔐",
+      Icon: Lock,
       color: "from-indigo-600 to-indigo-700",
-      buttonColor: "bg-yellow-500 hover:bg-yellow-600",
     },
     {
       title: "حلول الدفع الإلكتروني",
       description: "حلول الدفع الإلكتروني والاشتراكات العالمية",
-      icon: "💳",
+      Icon: CreditCard,
       color: "from-cyan-600 to-cyan-700",
-      buttonColor: "bg-yellow-500 hover:bg-yellow-600",
     },
     {
       title: "إدارة الأعمال الرقمية",
       description: "خدمات السوشيال ميديا وإدارة الأعمال الرقمية",
-      icon: "📱",
+      Icon: Smartphone,
       color: "from-purple-600 to-purple-700",
-      buttonColor: "bg-yellow-500 hover:bg-yellow-600",
     },
   ];
 
@@ -160,30 +152,34 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className={`bg-gradient-to-br ${service.color} rounded-xl p-6 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group`}
-              >
-                <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">
-                  {service.icon}
+            {services.map((service, index) => {
+              const { Icon } = service;
+              return (
+                <div
+                  key={index}
+                  className={`bg-gradient-to-br ${service.color} rounded-2xl p-8 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 cursor-pointer group flex flex-col`}
+                >
+                  <div className="mb-4 p-3 bg-white/20 rounded-lg w-fit group-hover:scale-110 transition-transform">
+                    <Icon className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 flex-grow">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-white/90 mb-6 flex-grow">
+                    {service.description}
+                  </p>
+                  <div className="flex gap-3 pt-4 border-t border-white/20">
+                    <button className="flex-1 bg-white text-gray-900 font-bold py-2.5 px-4 rounded-lg hover:bg-gray-100 transition-all flex items-center justify-center gap-2 group/btn shadow-lg hover:shadow-xl">
+                      اطلب الآن
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </button>
+                    <button className="flex-1 bg-white/20 hover:bg-white/30 text-white font-bold py-2.5 px-4 rounded-lg transition-all">
+                      تفاصيل
+                    </button>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-white/90 mb-4">
-                  {service.description}
-                </p>
-                <div className="flex gap-2">
-                  <button className={`${service.buttonColor} text-black font-semibold px-3 py-1 rounded text-sm transition-all`}>
-                    اطلب الآن
-                  </button>
-                  <button className="bg-gray-900 text-white font-semibold px-3 py-1 rounded text-sm hover:bg-gray-800 transition-all">
-                    تفاصيل
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -228,7 +224,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-8 rounded-xl transition-all hover:shadow-lg"
             >
-              <div className="w-12 h-12 text-white mx-auto mb-4 flex items-center justify-center">
+              <div className="w-12 h-12 text-white mx-auto mb-4 flex items-center justify-center text-2xl">
                 🌐
               </div>
               <h3 className="text-white font-semibold mb-2">Website</h3>
