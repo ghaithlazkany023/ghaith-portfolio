@@ -1,285 +1,343 @@
-import { Button } from "@/components/ui/button";
-import { Mail, MessageCircle, MapPin, Clock, MessageSquare, Facebook, Instagram, Settings, Lock, CreditCard, Smartphone, ArrowRight } from "lucide-react";
+import { MessageCircle, ArrowRight, Shield, Zap, Headphones, DollarSign, Wrench, CheckCircle } from "lucide-react";
 
 /**
- * Design Philosophy: Modern Professional Minimalist
- * - Clean, professional layout with deep blue (#1E40AF) and teal (#14B8A6) accents
- * - Hero section with professional profile image
- * - Service cards with icons and descriptions
- * - Clear call-to-action for WhatsApp contact
+ * Design: مؤسسة غيث للتسويق والتطوير
+ * - Dark navy background with gold/green accents
+ * - RTL Arabic layout
+ * - Multiple service sections with cards
+ * - WhatsApp floating button
+ * - Professional footer
  */
 
-export default function Home() {
-  const services = [
-    // الخدمات الجديدة (الأربع الأولى)
-    {
-      title: "توثيق واتساب",
-      description: "توثيق أرقام وقنوات الواتساب بالعلامة الزرقاء",
-      Icon: MessageSquare,
-      color: "from-blue-600 to-blue-700",
-    },
-    {
-      title: "توثيق فيسبوك",
-      description: "توثيق صفحات وحسابات فيسبوك بالعلامة الزرقاء",
-      Icon: Facebook,
-      color: "from-orange-500 to-red-600",
-    },
-    {
-      title: "توثيق إنستجرام",
-      description: "توثيق حسابات إنستجرام بالعلامة الزرقاء",
-      Icon: Instagram,
-      color: "from-pink-500 to-rose-600",
-    },
-    {
-      title: "توثيق Meta Business",
-      description: "توثيق حافظة أعمال Meta للإدارة الاحترافية",
-      Icon: Settings,
-      color: "from-green-500 to-emerald-600",
-    },
-    // الخدمات الأصلية
-    {
-      title: "خدمات التوثيق التجاري",
-      description: "التوثيق التجاري والهوية الرقمية المتقدمة",
-      Icon: Lock,
-      color: "from-indigo-600 to-indigo-700",
-    },
-    {
-      title: "حلول الدفع الإلكتروني",
-      description: "حلول الدفع الإلكتروني والاشتراكات العالمية",
-      Icon: CreditCard,
-      color: "from-cyan-600 to-cyan-700",
-    },
-    {
-      title: "إدارة الأعمال الرقمية",
-      description: "خدمات السوشيال ميديا وإدارة الأعمال الرقمية",
-      Icon: Smartphone,
-      color: "from-purple-600 to-purple-700",
-    },
-  ];
+const WHATSAPP_NUMBER = "905359160127";
+const waLink = (service: string) =>
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`مرحباً، أرغب بطلب خدمة: ${service}`)}`;
 
+export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header/Navigation */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border">
+    <div className="min-h-screen bg-[#0f1b2d] text-white" dir="rtl">
+      {/* Navigation */}
+      <header className="sticky top-0 z-50 bg-[#0f1b2d]/95 backdrop-blur-sm border-b border-white/10">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-lg">
-              G
+            <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+              غ
             </div>
-            <span className="font-bold text-lg text-foreground">Ghaith</span>
+            <div className="flex flex-col">
+              <span className="font-bold text-white text-sm">مؤسسة غيث</span>
+              <span className="text-xs text-gray-400">للتسويق والتطوير</span>
+            </div>
           </div>
-          <nav className="hidden md:flex gap-8">
-            <a href="#services" className="text-foreground hover:text-primary transition-colors">
-              الخدمات
-            </a>
-            <a href="#contact" className="text-foreground hover:text-primary transition-colors">
-              التواصل
-            </a>
+          <nav className="hidden md:flex gap-6 text-sm">
+            <a href="#hero" className="text-white hover:text-emerald-400 transition-colors">الرئيسية</a>
+            <a href="#services" className="text-gray-300 hover:text-emerald-400 transition-colors">الخدمات</a>
+            <a href="#why-us" className="text-gray-300 hover:text-emerald-400 transition-colors">لماذا نحن</a>
+            <a href="#contact" className="text-gray-300 hover:text-emerald-400 transition-colors">تواصل</a>
           </nav>
+          <a
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-transparent border border-white text-white px-4 py-2 rounded text-sm hover:bg-white hover:text-[#0f1b2d] transition-all"
+          >
+            أطلب الآن
+          </a>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 to-white overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-chart-1 rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="container mx-auto px-4 py-20 relative z-10">
-          <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
-            {/* Profile Image */}
-            <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary to-chart-1 rounded-2xl blur-2xl opacity-20"></div>
-                <img
-                  src="/manus-storage/suleiman_natural_profile.png"
-                  alt="Ghaith Lazkani"
-                  className="relative w-64 h-64 md:w-72 md:h-72 rounded-2xl object-cover shadow-2xl"
-                />
-              </div>
-            </div>
-
-            {/* Hero Content */}
-            <div className="flex-1 text-center md:text-right">
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                Ghaith Lazkani
-              </h1>
-              <p className="text-xl text-muted-foreground mb-2 font-medium">
-                Digital Solutions & Business Services
-              </p>
-              <p className="text-lg text-muted-foreground mb-8">
-                حلول رقمية متكاملة للتوثيق التجاري والدفع الإلكتروني وإدارة الأعمال
-              </p>
-
-              {/* Key Features */}
-              <div className="flex flex-col sm:flex-row gap-4 mb-8 justify-center md:justify-start">
-                <div className="flex items-center gap-2 text-foreground">
-                  <Clock className="w-5 h-5 text-primary" />
-                  <span>Open 24 hours</span>
-                </div>
-                <div className="flex items-center gap-2 text-foreground">
-                  <MapPin className="w-5 h-5 text-primary" />
-                  <span>Syria</span>
-                </div>
-              </div>
-
-              {/* CTA Button */}
-              <a href="https://wa.me/905359160127" target="_blank" rel="noopener noreferrer">
-                <Button
-                  size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-6 text-lg rounded-lg transition-all hover:shadow-lg hover:scale-105"
-                >
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  تواصل عبر الواتس
-                </Button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section id="services" className="py-20 bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              الخدمات المقدمة
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              نقدم حلولاً رقمية متكاملة وشاملة تغطي التوثيق والدفع الإلكتروني وإدارة الأعمال الرقمية بأعلى معايير الاحترافية
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => {
-              const { Icon } = service;
-              return (
-                <div
-                  key={index}
-                  className={`bg-gradient-to-br ${service.color} rounded-2xl p-8 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 cursor-pointer group flex flex-col`}
-                >
-                  <div className="mb-4 p-3 bg-white/20 rounded-lg w-fit group-hover:scale-110 transition-transform">
-                    <Icon className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 flex-grow">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-white/90 mb-6 flex-grow">
-                    {service.description}
-                  </p>
-                  <div className="flex gap-3 pt-4 border-t border-white/20">
-                    <button className="flex-1 bg-white text-gray-900 font-bold py-2.5 px-4 rounded-lg hover:bg-gray-100 transition-all flex items-center justify-center gap-2 group/btn shadow-lg hover:shadow-xl">
-                      اطلب الآن
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </button>
-                    <button className="flex-1 bg-white/20 hover:bg-white/30 text-white font-bold py-2.5 px-4 rounded-lg transition-all">
-                      تفاصيل
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gradient-to-br from-primary to-primary/90">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
-            تواصل معنا
-          </h2>
-          <p className="text-lg text-blue-100 mb-12 max-w-2xl mx-auto">
-            نحن هنا لمساعدتك. تواصل معنا عبر أي من القنوات التالية
+      <section id="hero" className="py-24 text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0f1b2d] via-[#162a45] to-[#0f1b2d]"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            نجاحك الرقمي يبدأ من
+            <br />
+            <span className="text-emerald-400">مؤسسة غيث</span>
+          </h1>
+          <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-10">
+            وجهتك الاحترافية لخدمات التوثيق الرسمي، البرامج التسويقية، تصميم وبرمجة المواقع والمتاجر والتطبيقات، ونشر الإعلانات الفعّالة.
           </p>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {/* WhatsApp */}
-            <a
-              href="https://wa.me/905359160127"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-8 rounded-xl transition-all hover:shadow-lg"
-            >
-              <MessageCircle className="w-12 h-12 text-white mx-auto mb-4" />
-              <h3 className="text-white font-semibold mb-2">WhatsApp</h3>
-              <p className="text-blue-100">+90 535 916 01 27</p>
+          <div className="flex gap-4 justify-center">
+            <a href="#services" className="bg-transparent border border-white text-white px-6 py-3 rounded hover:bg-white hover:text-[#0f1b2d] transition-all font-semibold">
+              تصفح الخدمات
             </a>
-
-            {/* Email */}
-            <a
-              href="mailto:lazkanyal@gmail.com"
-              className="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-8 rounded-xl transition-all hover:shadow-lg"
-            >
-              <Mail className="w-12 h-12 text-white mx-auto mb-4" />
-              <h3 className="text-white font-semibold mb-2">Email</h3>
-              <p className="text-blue-100">lazkanyal@gmail.com</p>
-            </a>
-
-            {/* Website */}
-            <a
-              href="https://ghaith.store"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-8 rounded-xl transition-all hover:shadow-lg"
-            >
-              <div className="w-12 h-12 text-white mx-auto mb-4 flex items-center justify-center text-2xl">
-                🌐
-              </div>
-              <h3 className="text-white font-semibold mb-2">Website</h3>
-              <p className="text-blue-100">ghaith.store</p>
+            <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" className="bg-transparent border border-white text-white px-6 py-3 rounded hover:bg-white hover:text-[#0f1b2d] transition-all font-semibold">
+              أطلب الآن
             </a>
           </div>
+        </div>
+      </section>
 
-          <a href="https://wa.me/905359160127" target="_blank" rel="noopener noreferrer">
-            <Button
-              size="lg"
-              className="bg-white text-primary hover:bg-blue-50 font-semibold px-8 py-6 text-lg"
-            >
-              <MessageCircle className="w-5 h-5 mr-2" />
-              ابدأ المحادثة الآن
-            </Button>
+      {/* خدمات الدفع والاشتراكات */}
+      <section id="services" className="py-16 bg-[#f5f5f0]">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-4">
+            <span className="inline-block bg-emerald-100 text-emerald-700 text-xs px-3 py-1 rounded-full mb-3">✨ جديد — حلول مالية متكاملة</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">خدمات الدفع والاشتراكات</h2>
+          <p className="text-center text-gray-600 mb-10 max-w-3xl mx-auto">
+            بطاقات دفع دولية، دفع الاشتراكات العالمية، تحويل الأموال وأكثر — كل ما تحتاجه من حلول مالية رقمية في مكان واحد بأمان وسرعة.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {[
+              { icon: "💳", title: "إصدار بطاقات دفع دولية (Visa / Mastercard)", desc: "بطاقات افتراضية وفيزيائية مقبولة عالمياً للشراء والدفع عبر الإنترنت بأمان تام.", color: "border-t-blue-500" },
+              { icon: "🔁", title: "دفع الاشتراكات العالمية (Netflix، Spotify، ChatGPT وغيرها)", desc: "ندفع عنك اشتراكات المنصات العالمية بأسعار منافسة وتفعيل فوري مضمون.", color: "border-t-orange-500" },
+              { icon: "P", title: "إنشاء وتفعيل حسابات PayPal", desc: "حسابات PayPal موثوقة ومفعّلة بالكامل للإرسال والاستقبال والشراء الآمن.", color: "border-t-indigo-500" },
+              { icon: "🎮", title: "بطاقات الألعاب والشحن (شحن شدات، جواهر، بطاقات رقمية)", desc: "شحن فوري لجميع الألعاب وبطاقات رقمية لجميع المتاجر بأفضل الأسعار.", color: "border-t-purple-500" },
+              { icon: "💸", title: "تحويل الأموال والمحافظ الإلكترونية", desc: "تحويل آمن وسريع بين المحافظ الإلكترونية والبنوك الرقمية حول العالم.", color: "border-t-green-500" },
+              { icon: "📊", title: "دفع الإعلانات الممولة (Meta، Google، TikTok)", desc: "نموّل حملاتك الإعلانية على جميع المنصات بحسابات إعلانية موثوقة.", color: "border-t-red-500" },
+            ].map((s, i) => (
+              <div key={i} className={`bg-white rounded-xl p-6 border-t-4 ${s.color} shadow-md hover:shadow-xl transition-all hover:-translate-y-1`}>
+                <div className="text-3xl mb-3">{s.icon}</div>
+                <h3 className="font-bold text-gray-900 mb-2 text-sm">{s.title}</h3>
+                <p className="text-gray-600 text-xs mb-4">{s.desc}</p>
+                <div className="flex gap-2">
+                  <a href={waLink(s.title)} target="_blank" rel="noopener noreferrer" className="flex-1 bg-[#c8a415] hover:bg-[#b8940f] text-white text-xs font-bold py-2 px-3 rounded text-center transition-all">اطلب الآن</a>
+                  <button className="flex-1 bg-gray-900 hover:bg-gray-800 text-white text-xs font-bold py-2 px-3 rounded transition-all">تفاصيل</button>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="flex justify-center gap-8 text-sm text-gray-600">
+            <span>🔒 معاملات آمنة وموثوقة</span>
+            <span>⚡ تنفيذ فوري خلال دقائق</span>
+            <span>💬 دعم مباشر على مدار الساعة</span>
+          </div>
+        </div>
+      </section>
+
+      {/* خدمات التوثيق */}
+      <section className="py-16 bg-[#eaeae5]">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-10">خدمات التوثيق</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+            {[
+              { icon: "💬", title: "توثيق أرقام وقنوات الواتساب بالعلامة الزرقاء", desc: "علامة التوثيق الرسمية ✔️ على رقم أو قناة الواتساب لحماية واحترافية كاملة.", color: "border-t-green-500" },
+              { icon: "f", title: "توثيق صفحات وحسابات فيسبوك بالعلامة الزرقاء", desc: "توثيق رسمي لصفحات وحسابات Facebook التجارية والشخصية.", color: "border-t-blue-600" },
+              { icon: "📷", title: "توثيق حسابات إنستجرام بالعلامة الزرقاء", desc: "وثّق حسابك في Instagram وانطلق نحو النجومية باحترافية كاملة.", color: "border-t-pink-500" },
+              { icon: "M", title: "توثيق حافظة أعمال Meta (Business Manager)", desc: "تحقق رسمي لحافظة أعمالك في Meta لإدارة إعلاناتك باحترافية.", color: "border-t-indigo-500" },
+            ].map((s, i) => (
+              <div key={i} className={`bg-white rounded-xl p-6 border-t-4 ${s.color} shadow-md hover:shadow-xl transition-all hover:-translate-y-1`}>
+                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-xl mb-3">{s.icon}</div>
+                <h3 className="font-bold text-gray-900 mb-2 text-sm">{s.title}</h3>
+                <p className="text-gray-600 text-xs mb-4">{s.desc}</p>
+                <div className="flex gap-2">
+                  <a href={waLink(s.title)} target="_blank" rel="noopener noreferrer" className="flex-1 bg-[#c8a415] hover:bg-[#b8940f] text-white text-xs font-bold py-2 px-3 rounded text-center transition-all">اطلب الآن</a>
+                  <button className="flex-1 bg-gray-900 hover:bg-gray-800 text-white text-xs font-bold py-2 px-3 rounded transition-all">تفاصيل</button>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="grid md:grid-cols-1 max-w-md mx-auto">
+            <div className="bg-white rounded-xl p-6 border-t-4 border-t-emerald-500 shadow-md hover:shadow-xl transition-all hover:-translate-y-1">
+              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-xl mb-3">✓</div>
+              <h3 className="font-bold text-gray-900 mb-2 text-sm">توثيق WhatsApp Business API وربطه بمزود معتمد</h3>
+              <p className="text-gray-600 text-xs mb-4">حوّل الواتساب إلى أداة بيع عالمية موثوقة مع API الرسمي.</p>
+              <div className="flex gap-2">
+                <a href={waLink("توثيق WhatsApp Business API")} target="_blank" rel="noopener noreferrer" className="flex-1 bg-[#c8a415] hover:bg-[#b8940f] text-white text-xs font-bold py-2 px-3 rounded text-center transition-all">اطلب الآن</a>
+                <button className="flex-1 bg-gray-900 hover:bg-gray-800 text-white text-xs font-bold py-2 px-3 rounded transition-all">تفاصيل</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* البرامج التسويقية */}
+      <section className="py-16 bg-[#f5f5f0]">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-10">البرامج التسويقية</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { icon: "📱", title: "Ghaith Marketing — تسويق واتساب من الجوال", desc: "التطبيق الأول في الوطن العربي للتسويق على الواتساب من الجوال." },
+              { icon: "💻", title: "المرسل الذهبي — تسويق واتساب من الكمبيوتر", desc: "أول وأفضل تطبيق سطح مكتب للتسويق على الواتساب بنظام الشات بوت." },
+              { icon: "🌐", title: "تسويق فيسبوك وإنستجرام وتويتر من منصة واحدة", desc: "صمّم حملاتك وتفاعل مع جمهورك من لوحة موحدة." },
+              { icon: "✉", title: "تسويق البريد الإلكتروني الاحترافي", desc: "أرسل آلاف الرسائل بتصاميم جذابة وتقارير مفصّلة." },
+              { icon: "✈", title: "التسويق عبر التلجرام", desc: "أنشئ قنوات قوية وأرسل محتوى مؤثر بنقرة زر." },
+              { icon: "🤖", title: "منصة غيث شات بوت", desc: "بوتات ذكية ترد تلقائياً بأزرار تفاعلية وسحابة متطورة." },
+              { icon: "🔍", title: "توليد أرقام الشركات وبيانات العملاء", desc: "استخرج بيانات عملاء محتملين من خرائط جوجل ومنصات التواصل." },
+              { icon: "🔓", title: "فتح الحظر عن أرقام الواتساب", desc: "استعد تشغيل الأرقام المحظورة باستخدام الذكاء الاصطناعي." },
+              { icon: "📊", title: "كشف قوة وتنشيط أرقام الواتساب", desc: "حلّل أداء أرقامك ونشّط الجديدة منها لحملات آمنة." },
+              { icon: "🚀", title: "GL MARKETING — النشر في الجروبات", desc: "انشر عروضك في عشرات الجروبات مع منشن تلقائي لجميع الأعضاء." },
+            ].map((s, i) => (
+              <div key={i} className="bg-white rounded-xl p-6 border-t-4 border-t-emerald-500 shadow-md hover:shadow-xl transition-all hover:-translate-y-1">
+                <div className="text-2xl mb-3">{s.icon}</div>
+                <h3 className="font-bold text-gray-900 mb-2 text-sm">{s.title}</h3>
+                <p className="text-gray-600 text-xs mb-4">{s.desc}</p>
+                <div className="flex gap-2">
+                  <a href={waLink(s.title)} target="_blank" rel="noopener noreferrer" className="flex-1 bg-[#c8a415] hover:bg-[#b8940f] text-white text-xs font-bold py-2 px-3 rounded text-center transition-all">اطلب الآن</a>
+                  <button className="flex-1 bg-gray-900 hover:bg-gray-800 text-white text-xs font-bold py-2 px-3 rounded transition-all">تفاصيل</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* خدمات واتساب المتميزة */}
+      <section className="py-16 bg-[#eaeae5]">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-10">خدمات واتساب المتميزة</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { icon: "🔄", title: "بيع وشراء قنوات الواتساب", desc: "نوفّر لك أفضل قنوات الواتساب بمتابعين حقيقيين، أو نسوّق قناتك للبيع." },
+              { icon: "📈", title: "تمويل متابعين قنوات الواتساب وفيسبوك وإنستجرام", desc: "زيادة حقيقية للمتابعين لقنواتك وحساباتك على جميع المنصات." },
+              { icon: "🏆", title: "تمويل الأصوات في مسابقات قنوات الواتساب", desc: "اضمن فوزك في المسابقات بتصويت احترافي ومنظّم." },
+            ].map((s, i) => (
+              <div key={i} className="bg-white rounded-xl p-6 border-t-4 border-t-yellow-500 shadow-md hover:shadow-xl transition-all hover:-translate-y-1">
+                <div className="text-2xl mb-3">{s.icon}</div>
+                <h3 className="font-bold text-gray-900 mb-2 text-sm">{s.title}</h3>
+                <p className="text-gray-600 text-xs mb-4">{s.desc}</p>
+                <div className="flex gap-2">
+                  <a href={waLink(s.title)} target="_blank" rel="noopener noreferrer" className="flex-1 bg-[#c8a415] hover:bg-[#b8940f] text-white text-xs font-bold py-2 px-3 rounded text-center transition-all">اطلب الآن</a>
+                  <button className="flex-1 bg-gray-900 hover:bg-gray-800 text-white text-xs font-bold py-2 px-3 rounded transition-all">تفاصيل</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* التصميم والبرمجة */}
+      <section className="py-16 bg-[#f5f5f0]">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-10">التصميم والبرمجة</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: "🎥", title: "تصميم فيديوهات موشن جرافيك احترافية", desc: "فيديوهات تسويقية وموشن جرافيك تجذب الانتباه وتبيع منتجاتك." },
+              { icon: "🖥", title: "تصميم وبرمجة المواقع والمتاجر والتطبيقات", desc: "مواقع ومتاجر إلكترونية وتطبيقات جوال احترافية تلائم نشاطك." },
+              { icon: "📍", title: "إضافة النشاط التجاري في خرائط Google", desc: "اجعل عملاءك يجدونك على خرائط جوجل بسهولة." },
+              { icon: "⭐", title: "تمويل التقييمات على Google Maps", desc: "تقييمات إيجابية حقيقية ترفع ترتيب نشاطك وثقة عملائك." },
+            ].map((s, i) => (
+              <div key={i} className="bg-white rounded-xl p-6 border-t-4 border-t-cyan-500 shadow-md hover:shadow-xl transition-all hover:-translate-y-1">
+                <div className="text-2xl mb-3">{s.icon}</div>
+                <h3 className="font-bold text-gray-900 mb-2 text-sm">{s.title}</h3>
+                <p className="text-gray-600 text-xs mb-4">{s.desc}</p>
+                <div className="flex gap-2">
+                  <a href={waLink(s.title)} target="_blank" rel="noopener noreferrer" className="flex-1 bg-[#c8a415] hover:bg-[#b8940f] text-white text-xs font-bold py-2 px-3 rounded text-center transition-all">اطلب الآن</a>
+                  <button className="flex-1 bg-gray-900 hover:bg-gray-800 text-white text-xs font-bold py-2 px-3 rounded transition-all">تفاصيل</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* نشر الإعلانات */}
+      <section className="py-16 bg-[#eaeae5]">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-10">نشر الإعلانات</h2>
+          <div className="max-w-md mx-auto">
+            <div className="bg-white rounded-xl p-6 border-t-4 border-t-red-500 shadow-md hover:shadow-xl transition-all hover:-translate-y-1">
+              <div className="text-2xl mb-3">📣</div>
+              <h3 className="font-bold text-gray-900 mb-2 text-sm">خدمة نشر الإعلانات الاحترافية</h3>
+              <p className="text-gray-600 text-xs mb-4">نعزز وصولك للجمهور المستهدف بأساليب فعّالة وعصرية.</p>
+              <div className="flex gap-2">
+                <a href={waLink("خدمة نشر الإعلانات الاحترافية")} target="_blank" rel="noopener noreferrer" className="flex-1 bg-[#c8a415] hover:bg-[#b8940f] text-white text-xs font-bold py-2 px-3 rounded text-center transition-all">اطلب الآن</a>
+                <button className="flex-1 bg-gray-900 hover:bg-gray-800 text-white text-xs font-bold py-2 px-3 rounded transition-all">تفاصيل</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* لماذا نحن */}
+      <section id="why-us" className="py-16 bg-[#f5f5f0]">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-10">خدماتنا</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { icon: <Wrench className="w-6 h-6 text-emerald-600" />, title: "خبرة تقنية", desc: "فريق محترف مع خبرة واسعة لتنفيذ مشاريعك بأعلى جودة." },
+              { icon: <Zap className="w-6 h-6 text-emerald-600" />, title: "سرعة في التنفيذ", desc: "ننجز خدماتك بأسرع وقت ممكن دون المساومة على الجودة." },
+              { icon: <Shield className="w-6 h-6 text-emerald-600" />, title: "ضمان حقيقي", desc: "خدماتنا مضمونة وتلتزم بأعلى معايير الاحترافية والثقة." },
+              { icon: <DollarSign className="w-6 h-6 text-emerald-600" />, title: "أسعار تنافسية", desc: "أسعار مدروسة تناسب مختلف الميزانيات بلا مفاجآت." },
+              { icon: <Headphones className="w-6 h-6 text-emerald-600" />, title: "دعم مباشر", desc: "دعم فني متواصل عبر الواتساب طوال الأسبوع." },
+              { icon: <CheckCircle className="w-6 h-6 text-emerald-600" />, title: "تكامل شامل", desc: "حلول متكاملة من التوثيق إلى التسويق والبرمجة." },
+            ].map((s, i) => (
+              <div key={i} className="bg-white rounded-xl p-6 text-center shadow-md">
+                <div className="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-3">{s.icon}</div>
+                <h3 className="font-bold text-gray-900 mb-2">{s.title}</h3>
+                <p className="text-gray-600 text-sm">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 bg-[#0f1b2d] text-center">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-white mb-4">جاهز للانطلاق؟</h2>
+          <p className="text-gray-300 mb-8">ابدأ معنا اليوم ودعنا نساعدك على تحقيق نجاح حقيقي يليق بطموحك.</p>
+          <a
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-8 py-4 rounded-lg text-lg transition-all"
+          >
+            أطلب الآن
           </a>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-white py-8">
+      <footer id="contact" className="py-12 bg-[#0a1220] border-t border-white/10">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            {/* Brand */}
             <div>
-              <p className="text-sm text-gray-300">
-                © 2026 Ghaith Lazkani. All rights reserved.
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold">غ</div>
+                <div>
+                  <div className="font-bold text-white">مؤسسة غيث</div>
+                  <div className="text-xs text-gray-400">للتسويق والتطوير</div>
+                </div>
+              </div>
+              <p className="text-gray-400 text-sm">
+                مؤسسة غيث للتسويق والتطوير — توثيق Whatsapp و Instagram و Facebook، البرامج التسويقية، تصميم وبرمجة المواقع والمتاجر والتطبيقات، ونشر الإعلانات.
               </p>
             </div>
-            <div className="flex gap-6">
-              <a
-                href="https://wa.me/905359160127"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                WhatsApp
-              </a>
-              <a
-                href="mailto:lazkanyal@gmail.com"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                Email
-              </a>
-              <a
-                href="https://ghaith.store"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                Website
-              </a>
+
+            {/* الأقسام */}
+            <div>
+              <h4 className="font-bold text-white mb-4">الأقسام</h4>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="#services" className="hover:text-emerald-400 transition-colors">خدمات الدفع والاشتراكات</a></li>
+                <li><a href="#services" className="hover:text-emerald-400 transition-colors">خدمات التوثيق</a></li>
+                <li><a href="#services" className="hover:text-emerald-400 transition-colors">البرامج التسويقية</a></li>
+                <li><a href="#services" className="hover:text-emerald-400 transition-colors">خدمات واتساب المتميزة</a></li>
+                <li><a href="#services" className="hover:text-emerald-400 transition-colors">التصميم والبرمجة</a></li>
+                <li><a href="#services" className="hover:text-emerald-400 transition-colors">نشر الإعلانات</a></li>
+              </ul>
             </div>
+
+            {/* تواصل */}
+            <div>
+              <h4 className="font-bold text-white mb-4">تواصل معنا</h4>
+              <p className="text-gray-400 text-sm mb-3">نحن متاحون لتلبية طلباتك على الواتساب:</p>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="tel:+905359160127" className="hover:text-emerald-400 transition-colors">📱 +90 535 916 01 27</a></li>
+                <li><a href="mailto:lazkanyal@gmail.com" className="hover:text-emerald-400 transition-colors">✉️ lazkanyal@gmail.com</a></li>
+                <li><a href="https://ghaith.store" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">🌐 ghaith.store</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-white/10 pt-6 text-center text-gray-500 text-sm">
+            © 2026 مؤسسة غيث للتسويق والتطوير. جميع الحقوق محفوظة.
           </div>
         </div>
       </footer>
+
+      {/* WhatsApp Floating Button */}
+      <a
+        href={`https://wa.me/${WHATSAPP_NUMBER}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 left-6 z-50 bg-[#25D366] hover:bg-[#1da851] text-white p-4 rounded-full shadow-2xl transition-all hover:scale-110 flex items-center gap-2"
+      >
+        <MessageCircle className="w-6 h-6" />
+        <span className="text-sm font-bold hidden md:inline">تواصل عبر الواتساب</span>
+      </a>
     </div>
   );
 }
